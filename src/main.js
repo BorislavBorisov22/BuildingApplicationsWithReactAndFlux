@@ -3,6 +3,7 @@ const React = require('react');
 
 const Home = require('./components/homePage');
 const About = require('./components/about/aboutPage');
+const Header = require('./components/common/header');
 
 class App extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class App extends React.Component {
 
         return (
             <div>
+                <Header />
                 <ChildComponent />
             </div>
         );
