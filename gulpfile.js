@@ -4,6 +4,7 @@ const open = require('gulp-open');
 const browserify = require('browserify'); // bundling js
 const reactify = require('reactify'); // compiles our jsx to js
 const source = require('vinyl-source-stream'); //
+const concat = require('gulp-concat'); // concatenates files
 
 const config = {
     devBaseUrl: 'http://localhost',
@@ -12,6 +13,10 @@ const config = {
         html: './src/*.html',
         js: './src/**/*.js',
         mainJs: './src/main.js',
+        css: [
+            './node_modules/bootstrap/dist/css/bootstrap.min.css',
+            './node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+        ],
         dist: './dist',
     }
 }
@@ -48,9 +53,15 @@ gulp.task('js', () => {
         .pipe(connect.reload());
 })
 
+gulp.task('css', () => {
+    gulp.src(config.paths.css)
+        .pipe(concat('bundle.css'))
+        .pipe(gulp.dest(`${config.paths.dist}/styles`))
+});
+
 gulp.task('watch', () => {
     gulp.watch(config.paths.html, ['html']);
     gulp.watch(config.paths.js, ['js']);
 });
 
-gulp.task('default', ['open', 'html', 'js', 'watch']);
+gulp.task('default', ['open', 'html', 'js', 'css', 'watch']);

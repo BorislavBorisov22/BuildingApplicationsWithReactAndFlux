@@ -1,3 +1,6 @@
-const App = console.log('Hello world');
+const $ = jQuery = require('jquery');
+const React = require('react');
 
-module.exports = App;
+const Home = require('./components/homePage.js');
+
+React.render(<Home />, document.getElementById('app'));
