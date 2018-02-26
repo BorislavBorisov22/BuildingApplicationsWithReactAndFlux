@@ -14,7 +14,6 @@ class AuthorList extends React.Component {
                 </tr>
             );
         };
-        console.log(this.props, 'props');
 
         return (
             <table className="table">
@@ -29,5 +28,9 @@ class AuthorList extends React.Component {
         );
     }
 }
+
+AuthorList.propTypes = {
+    authors: React.PropTypes.array.isRequired
+};
 
 module.exports = AuthorList;
