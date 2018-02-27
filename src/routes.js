@@ -2,7 +2,7 @@
 const React = require('react');
 const Router = require('react-router');
 
-const { DefaultRoute, Route, NotFoundRoute } = Router;
+const { DefaultRoute, Route, NotFoundRoute, Redirect } = Router;
 
 const routes = (
     <Route name="app" path="/" handler={require('./components/app')}>
@@ -10,6 +10,7 @@ const routes = (
         <Route name="authors" handler={require('./components/authors/authorPage')}/>
         <Route name="about" handler={require('./components/about/aboutPage')}/>
         <NotFoundRoute handler={require('./components/common/notFoundPage')}/>
+        <Redirect from="about-us" to="about"/>
     </Route>
 );
 
