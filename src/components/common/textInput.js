@@ -11,6 +11,7 @@ class TextInput extends React.Component {
             wrapperClass += ' has-error';
         }
 
+        return (
         <div className={wrapperClass}>
             <label htmlFor={this.props.name}>{this.props.label}</label>
             <div className="field">
@@ -19,6 +20,7 @@ class TextInput extends React.Component {
                 <div className="input">{this.props.error}</div>
             </div>
         </div>
+        );
     }
 }
 

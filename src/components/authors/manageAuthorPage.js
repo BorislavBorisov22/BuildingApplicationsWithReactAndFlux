@@ -1,5 +1,6 @@
 const React = require('react');
 const AuthorForm = require('./authorForm');
+const AuthorApi = require('../../api/authorApi');
 
 class ManageAuthorPage extends React.Component {
     constructor(props) {
@@ -24,11 +25,16 @@ class ManageAuthorPage extends React.Component {
         });
     }
 
+    saveAuthor(event) {
+        event.preventDefault();
+        AuthorApi.saveAuthor(this.state.author);
+    }
+
     render() {
         return (
             <div>
                 <h1>Manage Author</h1>
-                <AuthorForm author={this.state.author} onChange={this.setAuthorState.bind(this)}/>
+                <AuthorForm author={this.state.author} onChange={this.setAuthorState.bind(this)} onSave={this.saveAuthor.bind(this)}/>
             </div>
         );
     }

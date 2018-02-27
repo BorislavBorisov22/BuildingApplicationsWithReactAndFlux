@@ -1,5 +1,5 @@
 const React = require('react');
-const TextInput = require('../common/textInput');
+const Input = require('../common/textInput');
 
 class AuthorForm extends React.Component {
     constructor(props) {
@@ -9,15 +9,9 @@ class AuthorForm extends React.Component {
     render() {
         return(
             <form>
-                <label htmlFor="firstName">First Name</label>
-                <input onChange={this.props.onChange} type="text" name="firstName" className="form-control" placeholder="First Name" ref="firstName" value={this.props.firstName}/>
-
-                
-                <label htmlFor="lastName">Last Name</label>
-                <input onChange={this.props.onChange} type="text" name="lastName" className="form-control" placeholder="Last Name" ref="lastName" value={this.props.lastName}/>
-                <br/>
-
-                <input type="submit" value="Save" className="btn btn-default"/>
+                <Input name="firstName" label="First Name" value={this.props.author.firstName} onChange={this.props.onChange}/>
+                <Input name="lastName" label="Last Name" value={this.props.author.lastName} onChange={this.props.onChange}/>
+                <input type="submit" value="Save" className="btn btn-default" onClick={this.props.onSave}/>
             </form>
         );
     }
