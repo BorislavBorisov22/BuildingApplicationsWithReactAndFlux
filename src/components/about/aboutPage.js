@@ -24,6 +24,14 @@ class About extends React.Component {
             </div>
         );
     }
+
+    static willTransitionTo(transition, params, query, callback) {
+        if(!confirm('Are you sure you want to read a page that boring?')) {
+            transition.abort();
+        } else {
+            callback();
+        }
+    }
 }
 
 module.exports = About;
