@@ -1,20 +1,21 @@
 const React = require('react');
 const AuthorForm = require('./authorForm');
 const AuthorApi = require('../../api/authorApi');
+const { Navigation } = require('react-router');
 
-class ManageAuthorPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
+const ManageAuthorPage = React.createClass({
+    getInitialState() {
+        return {
             author: {
                 id: '',
                 firstName: '',
                 lastName: ''
             }
         };
-    }
-
+    },
+    mixins: [
+        Navigation
+    ],
     setAuthorState(event) {
         const field = event.target.name;
         const value = event.target.value;
@@ -23,21 +24,20 @@ class ManageAuthorPage extends React.Component {
         this.setState ({
             author: this.state.author
         });
-    }
-
+    },
     saveAuthor(event) {
         event.preventDefault();
         AuthorApi.saveAuthor(this.state.author);
-    }
-
+        this.transitionTo('authors');
+    },
     render() {
         return (
             <div>
                 <h1>Manage Author</h1>
-                <AuthorForm author={this.state.author} onChange={this.setAuthorState.bind(this)} onSave={this.saveAuthor.bind(this)}/>
+                <AuthorForm author={this.state.author} onChange={this.setAuthorState} onSave={this.saveAuthor}/>
             </div>
         );
     }
-}
+});
 
 module.exports = ManageAuthorPage;
