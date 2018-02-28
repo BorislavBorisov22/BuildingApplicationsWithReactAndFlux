@@ -12,22 +12,27 @@ const ManageAuthorPage = React.createClass({
                 firstName: '',
                 lastName: ''
             },
-            error: {}
+            error: {},
+            dirty: false
         };
     },
     mixins: [
         Navigation
     ],
     setAuthorState(event) {
+        this.setState({
+            dirty: true
+        });
+
         const field = event.target.name;
         const value = event.target.value;
 
         this.state.author[field]= value;
         this.setState ({
-            author: this.state.author
+            author: this.state.author,
         });
     },
-    isAuthorFormValid() {
+    isFormValid() {
         let formIsValid = true;
         this.state.error = {}; // clear any previous errors;
 
@@ -50,12 +55,15 @@ const ManageAuthorPage = React.createClass({
     saveAuthor(event) {
         event.preventDefault();
 
-        if(!this.isAuthorFormValid()) {
+        if (!this.isFormValid()) {
             return;
         }
 
         AuthorApi.saveAuthor(this.state.author);
         toastr.success('Author Saved!');
+        this.setState({
+            dirty: false
+        });
         this.transitionTo('authors');
     },
     render() {
@@ -65,6 +73,13 @@ const ManageAuthorPage = React.createClass({
                 <AuthorForm author={this.state.author} onChange={this.setAuthorState} onSave={this.saveAuthor} error={this.state.error}/>
             </div>
         );
+    },
+    statics: {
+        willTransitionFrom: (transition, component) => {
+            if (component.state.dirty && !confirm('Left withot saving!?')) {
+                transition.abort();
+            }
+        }
     }
 });
 

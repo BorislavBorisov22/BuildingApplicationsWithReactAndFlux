@@ -17,4 +17,12 @@ class AuthorForm extends React.Component {
     }
 }
 
+AuthorForm.propTypes = {
+    author: React.PropTypes.object.isRequired,
+    onSave:  React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    error: React.PropTypes.object.isRequired
+};
+
+
 module.exports = AuthorForm;
