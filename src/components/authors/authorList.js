@@ -11,6 +11,7 @@ class AuthorList extends React.Component {
     deleteAuthor(authorId, event) {
         event.preventDefault();
         AuthorActions.deleteAuthor(authorId);
+        toastr.success('Author deleted successfully!');
     }
 
     render() {
