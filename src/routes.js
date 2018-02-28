@@ -10,6 +10,7 @@ const routes = (
         <Route name="authors" handler={require('./components/authors/authorPage')}/>
         <Route name="about" handler={require('./components/about/aboutPage')}/>
         <Route name="addAuthor" path="author" handler={require('./components/authors/manageAuthorPage')}/>
+        <Route name="courses" handler={require('./components/courses/coursePage')}/>
         <Route name="manageAuthor" path="author/:id" handler={require('./components/authors/manageAuthorPage')}/>
         <NotFoundRoute handler={require('./components/common/notFoundPage')}/>
         <Redirect from="about-us" to="about"/>
