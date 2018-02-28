@@ -74,12 +74,21 @@ const ManageAuthorPage = React.createClass({
             </div>
         );
     },
+    componentWillMount() {
+        const authorId = this.props.params.id;
+        
+        if (authorId) {
+            this.setState({
+                author: AuthorApi.getAuthorById(authorId),
+            });
+        }
+    },
     statics: {
         willTransitionFrom: (transition, component) => {
             if (component.state.dirty && !confirm('Left withot saving!?')) {
                 transition.abort();
             }
-        }
+        },
     }
 });
 
