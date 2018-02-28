@@ -1,6 +1,7 @@
 const React = require('react');
 const AuthorForm = require('./authorForm');
-const AuthorApi = require('../../api/authorApi');
+const AuthorActions = require('../../actions/authorActions');
+const AuthorStore = require('../../stores/authorStore');
 const { Navigation } = require('react-router');
 const toastr = require('toastr');
 
@@ -59,7 +60,7 @@ const ManageAuthorPage = React.createClass({
             return;
         }
 
-        AuthorApi.saveAuthor(this.state.author);
+        AuthorActions.createAuthor(this.state.author);
         toastr.success('Author Saved!');
         this.setState({
             dirty: false
@@ -79,7 +80,7 @@ const ManageAuthorPage = React.createClass({
         
         if (authorId) {
             this.setState({
-                author: AuthorApi.getAuthorById(authorId),
+                author: AuthorStore.getAuthorById(authorId),
             });
         }
     },
