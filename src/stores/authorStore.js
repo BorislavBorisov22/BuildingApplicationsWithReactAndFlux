@@ -5,7 +5,7 @@ const { EventEmitter}  = require('events');
 
 const CHANGE_EVENT = 'change';
 
-const authors = [];
+let authors = [];
 
 const AuthorStore = Object.assign({}, EventEmitter.prototype, {
     addChangeListener(callback) {
@@ -21,8 +21,6 @@ const AuthorStore = Object.assign({}, EventEmitter.prototype, {
         return authors;
     },
     getAuthorById(id) {
-        console.log(id, 'loggin id');
-        console.log(authors, 'authors list')
         return authors.find(a => a.id === id) || {};
     }
 });
@@ -32,7 +30,20 @@ Dispatcher.register((action) => {
         case ActionTypes.CREATE_AUTHOR:
             authors.push(action.data);
             AuthorStore.emitChange();
-        break;
+            break;
+        case ActionTypes.INITIALIZE:
+            authors = action.initialData.authors;
+            AuthorStore.emitChange();
+            break;
+        case ActionTypes.UPDATE_AUTHOR: 
+            const updatedAuthor = action.data;
+            const index = authors.findIndex(a => a.id === updatedAuthor.id);
+            if (index >= 0) {
+                authors[index] = updatedAuthor;
+                AuthorStore.emitChange();
+            }
+            break;
+        default: break;
     }
 });
 

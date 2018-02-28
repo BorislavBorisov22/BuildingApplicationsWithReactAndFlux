@@ -1,6 +1,7 @@
 const React = require('react');
-const AuthorApi = require('../../api/authorApi');
 const AuthorList = require('./authorList');
+const AuthorStore = require('../../stores/authorStore');
+const AuthorActions = require('../../actions/authorActions');
 
 const Router = require('react-router');
 const { Link } = Router;
@@ -10,14 +11,8 @@ class AuthorPage extends React.Component {
         super(props);
 
         this.state = {
-            authors: []
+            authors: AuthorStore.getAllAuthors()
         };
-    }
-
-    componentDidMount() {
-        this.setState({
-            authors:  AuthorApi.getAllAuthors()
-        });
     }
 
     render() {
