@@ -35,7 +35,7 @@ Dispatcher.register((action) => {
             authors = action.initialData.authors;
             AuthorStore.emitChange();
             break;
-        case ActionTypes.UPDATE_AUTHOR: 
+        case ActionTypes.UPDATE_AUTHOR:
             const updatedAuthor = action.data;
             const index = authors.findIndex(a => a.id === updatedAuthor.id);
             if (index >= 0) {
@@ -43,6 +43,11 @@ Dispatcher.register((action) => {
                 AuthorStore.emitChange();
             }
             break;
+        case ActionTypes.DELETE_AUTHOR: 
+            const authorId = action.data;
+            const targetIndex = authors.find(a => a.id === authorId);
+            authors.splice(targetIndex, 1);
+            AuthorStore.emitChange();
         default: break;
     }
 });

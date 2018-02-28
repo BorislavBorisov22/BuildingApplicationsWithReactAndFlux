@@ -15,6 +15,20 @@ class AuthorPage extends React.Component {
         };
     }
 
+    _onChange() {
+        this.setState({
+            authors: AuthorStore.getAllAuthors()
+        });
+    }
+
+    componentWillMount() {
+        AuthorStore.addChangeListener(this._onChange.bind(this));
+    }
+
+    componentWillUnmount() {
+        AuthorStore.removeChangeListener(this._onChange.bind(this));
+    }
+
     render() {
         return (
             <div>
