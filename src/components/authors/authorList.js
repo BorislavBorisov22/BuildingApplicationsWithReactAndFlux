@@ -1,4 +1,5 @@
 const React = require('react');
+const { Link } = require('react-router');
 
 class AuthorList extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class AuthorList extends React.Component {
         const createAuthorRow = (author) => {
             return (
                 <tr key={author.id}>
-                    <td><a href={`#/authors/${author.id}`}>{author.id}</a></td>
+                    <td><Link to="manageAuthor" params={{id: author.id}}>{author.id}</Link></td>
                     <td>{author.firstName} {author.lastName}</td>
                 </tr>
             );
