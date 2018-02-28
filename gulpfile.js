@@ -15,7 +15,8 @@ const config = {
         mainJs: './src/main.js',
         css: [
             './node_modules/bootstrap/dist/css/bootstrap.min.css',
-            './node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+            './node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+            './node_modules/toastr/toastr.css'
         ],
         dist: './dist',
     }
