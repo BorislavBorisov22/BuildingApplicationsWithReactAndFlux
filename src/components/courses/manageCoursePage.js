@@ -31,12 +31,12 @@ class ManageCoursePage extends React.Component {
     isFormValid() {
         const error = {};
         let isFormValid = true;
-        if (this.state.title.length < 3) {
+        if (this.state.course.title.length < 3) {
             error.title = 'Title must be at least 3 symbols long!';
             isFormValid = false;
         }
 
-        if (this.state.category.length < 3) {
+        if (this.state.course.category.length < 3) {
             error.category = 'Cateogry must be at least 3 symbols long!';
             isFormValid = false;
         }
