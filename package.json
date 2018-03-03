@@ -5,6 +5,9 @@
   "repository": "https://github.com/BorislavBorisov22/BuildingApplicationsWithReactAndFlux.git",
   "author": "BorislavBorisov22 <borislavborisov22@abv.bg>",
   "license": "MIT",
+  "scripts": {
+    "start": "gulp"
+  },
   "dependencies": {
     "bootstrap": "3.3.5",
     "browserify": "11.0.1",
