@@ -1,9 +1,14 @@
 const React = require('react');
 const { Link } = require('react-router');
+const CourseActions = require('../../actions/courseActions');
 
 class CourseList extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    deleteCourse(courseId, event) {
+        CourseActions.deleteCourse(courseId);
     }
 
     render() {
@@ -12,7 +17,7 @@ class CourseList extends React.Component {
             return (
                 <tr key={course.id}>
                     <td><a href={course.watchHref}>Watch</a></td>
-                    <td><a href={course.watchHref}>Delete</a></td>
+                    <td><a onClick={(event) => this.deleteCourse(course.id, event)}>Delete</a></td>
                     <td><Link to="manageCourse" params={{id: course.id}}>{course.title}</Link></td>
                     <td>{course.author.name}</td>
                     <td>{course.category}</td>

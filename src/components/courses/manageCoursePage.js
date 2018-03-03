@@ -1,7 +1,6 @@
 const React = require('react');
 const CourseForm = require('./courseForm');
-const CourseApi = require('../../api/courseApi');
-const AuthorApi = require('../../api/authorApi');
+const AuthorStore = require('../../stores/authorStore');
 const CourseAction = require('../../actions/courseActions');
 const CourseStore = require('../../stores/courseStore');
 const toastr = require('toastr');
@@ -9,7 +8,7 @@ const { Navigation } = require('react-router');
 
 const ManageCoursePage = React.createClass({
     getInitialState() {
-        const authors = AuthorApi.getAllAuthors();
+        const authors = AuthorStore.getAllAuthors();
 
         return {
             course: {
@@ -21,7 +20,7 @@ const ManageCoursePage = React.createClass({
                     name: `${authors[0].firstName} ${authors[0].lastName}`
                 },
             },
-            authors: AuthorApi.getAllAuthors(),
+            authors: authors,
             error: {},
         }
     },
@@ -32,7 +31,7 @@ const ManageCoursePage = React.createClass({
         const courseId = this.props.params.id;
         if (courseId) {
             this.setState({
-                course: CourseApi.getCoursesById(courseId)
+                course: CourseStore.getCourseById(courseId)
             });
         }
     },

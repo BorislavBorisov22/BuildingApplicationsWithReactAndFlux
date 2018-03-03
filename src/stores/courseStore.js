@@ -33,6 +33,15 @@ Dispatcher.register((action) => {
         case ActionTypes.INITIALIZE:
             courses = action.initialData.courses;
             CourseStore.emitChange();
+            break;
+        case ActionTypes.DELETE_COURSE:
+            const courseId = action.data;
+            const targetIndex = courses.findIndex(c => c.id === courseId);
+            if (targetIndex >= 0) {
+                courses.splice(targetIndex, 1);
+                CourseStore.emitChange();
+            }
+            break;
         default: break;
     }
 });

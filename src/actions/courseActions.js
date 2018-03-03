@@ -10,6 +10,13 @@ const CourseActions = {
             data: newCourse,
         });
     },
+    deleteCourse(courseId) {
+        CourseApi.deleteCourse(courseId);
+        Dispatcher.dispatch({
+            actionType: actionTypes.DELETE_COURSE,
+            data: courseId,
+        })
+    }
 };
 
 module.exports = CourseActions;
