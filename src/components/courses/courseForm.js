@@ -7,11 +7,10 @@ class CourseForm extends React.Component {
     }
 
     render() {
-        console.log(this.props, 'course form props')
         return(
             <form>
                 <Input name="title" label="Title" value={this.props.course.title} onChange={this.props.onChange} error={this.props.error.title}/>
-                <Input name="author" label="Author" value={this.props.course.author} onChange={this.props.onChange} error={this.props.error.author}/>
+                <Input name="author" label="Author" value={this.props.course.author.name} onChange={this.props.onChange} error={this.props.error.author}/>
                 <Input name="category" label="Category" value={this.props.course.category} onChange={this.props.onChange} error={this.props.error.category}/>
                 <Input name="length" label="Length" value={this.props.course.length} onChange={this.props.onChange} error={this.props.error.length}/>
                 <input type="submit" value="Save" className="btn btn-default" onClick={this.props.onSave}/>

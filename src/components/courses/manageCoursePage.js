@@ -10,11 +10,23 @@ class ManageCoursePage extends React.Component {
         this.state = {
             course: {
                 title: '',
-                author: '',
+                author: {
+                    id: '',
+                    name: ''
+                },
                 category: '',
                 length: ''
             },
             error: {},
+        }
+    }
+
+    componentWillMount() {
+        const courseId = this.props.params.id;
+        if (courseId) {
+            this.setState({
+                course: CourseApi.getCoursesById(courseId)
+            });
         }
     }
 
@@ -37,7 +49,7 @@ class ManageCoursePage extends React.Component {
         }
 
         if (this.state.course.category.length < 3) {
-            error.category = 'Cateogry must be at least 3 symbols long!';
+            error.category = 'Category must be at least 3 symbols long!';
             isFormValid = false;
         }
 

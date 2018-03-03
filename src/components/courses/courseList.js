@@ -13,10 +13,10 @@ class CourseList extends React.Component {
                 <tr key={course.id}>
                     <td><a href={course.watchHref}>Watch</a></td>
                     <td><a href={course.watchHref}>Delete</a></td>
-                    <td><Link to="manageAuthor" params={{id: course.id}}>{course.id}</Link></td>
-                    <td>{course.title}</td>
+                    <td><Link to="manageCourse" params={{id: course.id}}>{course.title}</Link></td>
+                    <td>{course.author.name}</td>
                     <td>{course.category}</td>
-                    <td>{course.lenght}</td>
+                    <td>{course.length}</td>
                 </tr>
             );
         };
