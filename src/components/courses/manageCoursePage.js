@@ -3,6 +3,7 @@ const CourseForm = require('./courseForm');
 const CourseApi = require('../../api/courseApi');
 const AuthorApi = require('../../api/authorApi');
 const CourseAction = require('../../actions/courseActions');
+const CourseStore = require('../../stores/courseStore');
 const toastr = require('toastr');
 const { Navigation } = require('react-router');
 

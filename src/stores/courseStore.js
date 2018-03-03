@@ -30,6 +30,9 @@ Dispatcher.register((action) => {
             courses.push(action.data);
             CourseStore.emitChange();
             break;
+        case ActionTypes.INITIALIZE:
+            courses = action.initialData.courses;
+            CourseStore.emitChange();
         default: break;
     }
 });
