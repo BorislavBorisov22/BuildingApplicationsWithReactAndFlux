@@ -2,6 +2,7 @@ const React = require('react');
 const CourseForm = require('./courseForm');
 const CourseApi = require('../../api/courseApi');
 const AuthorApi = require('../../api/authorApi');
+const CourseAction = require('../../actions/courseActions');
 const toastr = require('toastr');
 const { Navigation } = require('react-router');
 
@@ -79,7 +80,7 @@ const ManageCoursePage = React.createClass({
 
         console.log(this.state.course, 'coures state');
 
-        CourseApi.saveCourse(this.state.course);
+        CourseAction.createCourse(this.state.course);
         toastr.success('Course saved successfully!');
         this.transitionTo('courses');
     },
